@@ -118,12 +118,12 @@
     if (badge) badge.textContent = count;
     const body = $('#drawerBody'), foot = $('#drawerFoot');
     if (!cart.length) {
-      body.innerHTML = `<div class="cart-empty"><img src="img/octopus.png" alt=""><h4 style="font-size:1.6rem;color:var(--aqua)">Cart's empty</h4><p>Dive in and grab the game board or a plush crew mate.</p><a class="btn btn-primary" href="shop.html">Visit the shop</a></div>`;
+      body.innerHTML = '';
       foot.innerHTML = ''; return;
     }
     body.innerHTML = `<div style="display:grid;gap:14px">${cart.map(i => `
       <div class="cart-item">
-        <div class="thumb-mini"><img src="${i.img || 'img/octopus.png'}" alt="" style="${i.img ? 'width:100%;border-radius:12px' : ''}"></div>
+        <div class="thumb-mini"><img src="${i.img || 'favicon.svg'}" alt="" style="${i.img ? 'width:100%;border-radius:12px' : ''}"></div>
         <div><h4>${i.name}</h4><small>${i.variant}</small>
           <div class="mini-qty"><button data-act="dec" data-id="${i.id}" aria-label="Decrease">−</button><span>${i.qty}</span><button data-act="inc" data-id="${i.id}" aria-label="Increase">+</button></div></div>
         <div><div class="line-total">${money(i.price * i.qty)}</div><button class="rm" data-act="rm" data-id="${i.id}">Remove</button></div>
@@ -142,10 +142,10 @@
     const cart = getCart(), n = cart.reduce((a, i) => a + i.qty, 0), sub = cart.reduce((a, i) => a + i.price * i.qty, 0);
     let el = document.getElementById('demoCo'); if (el) el.remove();
     el = document.createElement('div'); el.id = 'demoCo'; el.className = 'democo'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); el.setAttribute('aria-labelledby', 'dcT');
-    const items = cart.map(i => `<li><span class="dc-th"><img src="${i.img || 'img/octopus.png'}" alt=""></span><span class="dc-nm"><b>${i.name}</b><small>${i.variant || ''}</small><small>Qty ${i.qty}</small></span><span class="dc-pr">${money(i.price * i.qty)}</span></li>`).join('');
+    const items = cart.map(i => `<li><span class="dc-th"><img src="${i.img || 'favicon.svg'}" alt=""></span><span class="dc-nm"><b>${i.name}</b><small>${i.variant || ''}</small><small>Qty ${i.qty}</small></span><span class="dc-pr">${money(i.price * i.qty)}</span></li>`).join('');
     const steps = k => `<ol class="dc-steps" aria-label="Checkout steps">${['Cargo', 'Crew', 'Launch'].map((t, i) => `<li class="${i + 1 < k ? 'done' : i + 1 === k ? 'on' : ''}"><i>${i + 1 < k ? '&#10003;' : i + 1}</i>${t}</li>`).join('')}</ol>`;
     el.innerHTML = `<div class="dc-card"><div class="dc-band"><span>Demo mode</span><span>Demo mode</span><span>Demo mode</span><span>Demo mode</span></div>
-      <div class="dc-step" id="dcS1">${steps(1)}<div class="dc-head"><img src="img/octopus.png" alt=""><div><span class="dc-tag">Practice checkout</span><h2 id="dcT">Check your cargo</h2></div></div>
+      <div class="dc-step" id="dcS1">${steps(1)}<div class="dc-head"><img src="favicon.svg" alt=""><div><span class="dc-tag">Practice checkout</span><h2 id="dcT">Check your cargo</h2></div></div>
         <p class="dc-lead">This store is a demo. Nothing here is real, so no money moves and nothing ships.</p>
         <ul class="dc-items">${items}</ul>
         <div class="dc-sum"><span>${n} ${n === 1 ? 'item' : 'items'}</span><b>${money(sub)}</b></div>

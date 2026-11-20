@@ -165,3 +165,12 @@ p,li{color:var(--muted)}
 .auth-logo{max-width:340px;width:100%;align-self:center}
 .auth-logo .casefile-logo{animation:none}
 body[data-page="login"] .nav .brand{color:#f5ecea!important}
+.ref-hero .lead{margin:6px 0 10px;color:#dccdcf}
+.ref-h{font-family:var(--font-display);font-weight:400;text-transform:uppercase;font-size:clamp(1.6rem,3vw,2.2rem);color:#f5ecea;margin:56px 0 0}
+.dv-bar small{display:block;color:var(--r200);font-size:.78rem;margin-top:3px}
+.srclist{margin:20px 0 0;padding-left:22px;display:grid;gap:12px;max-width:980px}
+.srclist li{color:#dccdcf;line-height:1.6}
+.srclist a{color:var(--r300);text-decoration:underline;text-underline-offset:3px;word-break:break-word}
+.srclist b{color:#f5ecea}
+.refnote{max-width:980px;margin:18px 0 0;line-height:1.7;color:#dccdcf}
+@media(max-width:900px){.h2-art{max-width:240px!important}}
