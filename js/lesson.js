@@ -32,7 +32,7 @@
 
   /* ---------- steps ---------- */
   function part1() {
-    html(`<span class="eyebrow">${esc(E.c.title)} · Lesson ${E.li + 1}</span><h1>${esc(L.t)}</h1><p class="t" style="color:var(--muted)">Part 1 · Learn the language</p>${L.a.map(p => `<p class="t">${marked(p, L.v)}</p>`).join('')}<div class="subh" style="color:var(--aqua);font-weight:800;letter-spacing:.14em;font-size:.75rem;text-transform:uppercase;margin-top:26px">Key vocabulary (${L.v.length} terms)</div><div class="vgrid">${L.v.map(([t, d]) => `<div class="vcard"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div><div class="actions"><button class="btn" id="go">Take the vocab test</button></div>`);
+    html(`<span class="eyebrow">${esc(E.c.title)} · Lesson ${E.li + 1}</span><h1>${esc(L.t)}</h1><p class="t" style="color:var(--muted)">Part 1 · Learn the language</p>${A.state().mode !== 'regular' && !A.isDone(key) ? `<div class="unlock-tip">🔒 Complete all 5 steps of this lesson to unlock its case file in Field Ops.</div>` : ''}${L.a.map(p => `<p class="t">${marked(p, L.v)}</p>`).join('')}<div class="subh" style="color:var(--aqua);font-weight:800;letter-spacing:.14em;font-size:.75rem;text-transform:uppercase;margin-top:26px">Key vocabulary (${L.v.length} terms)</div><div class="vgrid">${L.v.map(([t, d]) => `<div class="vcard"><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')}</div><div class="actions"><button class="btn" id="go">Take the vocab test</button></div>`);
     $('#go').onclick = () => setStep(1);
   }
   function pool() { const out = []; E.c.lessons.forEach(l => l.v.forEach(x => out.push(x))); window.COURSE.pathways.forEach(p => p.chapters.forEach(c => { if (out.length < 24) c.lessons.forEach(l => l.v.forEach(x => out.push(x))); })); return out; }

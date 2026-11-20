@@ -60,16 +60,18 @@
   }
 
   /* ---------- ops ---------- */
+  const LOCK_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
   function ops() {
     if (!gameMode()) return `<div class="top-row"><div class="hello"><h1>Field <em>Ops</em></h1><p>Field Ops belongs to the game version.</p></div></div><div class="card"><h3>Game version only</h3><p>You chose the regular version. Switch to the game version in your Dossier to unlock a 3D case for every lesson.</p></div>`;
     const f = A.flat().filter(e => e.pi === browsePathOps()), all = A.flat();
     const solved = all.filter(e => A.caseDone(e.key)).length, opened = all.filter(e => A.isDone(e.key)).length;
     const P = window.COURSE.pathways, sp = A.pathStart();
     const tabs = P.map((p, i) => `<button class="pt ${i === browsePathOps() ? 'on' : ''}" data-op="${i}">${esc(p.name)}</button>`).join('');
-    let html = `<div class="top-row"><div class="hello"><h1>Field <em>Ops</em></h1><p>Every lesson you finish unlocks a case file in Nightfall City. ${solved} solved · ${opened} unlocked.</p></div>${stats()}</div><div class="pathtabs">${tabs}</div>`;
+    const nxl = A.next();
+    let html = `<div class="top-row"><div class="hello"><h1>Field <em>Ops</em></h1><p>Every lesson you finish unlocks a case file in Nightfall City. ${solved} solved · ${opened} unlocked.</p></div>${stats()}</div><div class="unlock-note"><span class="ul-ic">${LOCK_SVG}</span><div><b>How case files unlock</b><p>Each case file stays locked until you complete its lesson: the briefing, vocab test, concepts, quiz and simulation. Finish the lesson and its case file opens here.</p></div>${nxl ? `<a class="btn sm" href="lesson.html?k=${nxl.key}">Go to next lesson</a>` : ''}</div><div class="pathtabs">${tabs}</div>`;
     P[browsePathOps()].chapters.forEach((c, ci) => {
       html += `<section class="chap"><div class="chap-h"><span>Chapter ${ci + 1}</span><h3>${esc(c.title)}</h3></div><div class="cases">${c.lessons.map((l, li) => { const key = A.lessonKey(c.id, li), n = all.findIndex(e => e.key === key) + 1, open = A.isDone(key), done = A.caseDone(key);
-        return open ? `<a class="casef ${done ? 'solved' : ''}" href="play.html?k=${key}"><span class="tab">CASE ${String(n).padStart(3, '0')}</span><b>${esc(l.t)}</b><small>${done ? 'Solved' : 'Ready to investigate'}</small></a>` : `<div class="casef lock"><span class="tab">CASE ${String(n).padStart(3, '0')}</span><b>${esc(l.t)}</b><small>Finish the lesson to unlock</small></div>`; }).join('')}</div></section>`;
+        return open ? `<a class="casef ${done ? 'solved' : ''}" href="play.html?k=${key}"><span class="tab">CASE ${String(n).padStart(3, '0')}</span><b>${esc(l.t)}</b><small>${done ? 'Solved' : 'Ready to investigate'}</small></a>` : `<button type="button" class="casef lock" data-lockcase="${esc(l.t)}"><span class="tab">CASE ${String(n).padStart(3, '0')}</span><span class="lk">${LOCK_SVG}</span><b>${esc(l.t)}</b><small>Locked · complete the "${esc(l.t)}" lesson to unlock</small></button>`; }).join('')}</div></section>`;
     });
     return html;
   }
@@ -121,11 +123,13 @@
     step1();
   }
 
+  try { if (sessionStorage.getItem('ai_locked_case')) { const t = sessionStorage.getItem('ai_locked_case'); sessionStorage.removeItem('ai_locked_case'); setTimeout(() => A.toast('Complete the "' + t + '" lesson to unlock that case file.'), 400); } } catch (e) {}
   function render() {
     chrome();
     const V = { home, train, ops, shop, me }; $('#main').innerHTML = V[view]();
     $$('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
     $$('[data-op]').forEach(b => b.onclick = () => { opsPath = +b.dataset.op; render(); });
+    $$('[data-lockcase]').forEach(b => b.onclick = () => A.toast('Complete the "' + b.dataset.lockcase + '" lesson to unlock this case file.'));
     $$('[data-k]').forEach(b => b.onclick = () => { location.href = 'lesson.html?k=' + b.dataset.k; });
     $$('[data-p]').forEach(b => b.onclick = () => { browsePath = +b.dataset.p; const open = browsePath <= A.pathStart() || A.pathDone(window.COURSE.pathways[browsePath - 1]); if (!open) A.toast('Finish the previous pathway to unlock this one.'); render(); });
     $$('[data-buy]').forEach(b => b.onclick = () => wear(b.dataset.buy));

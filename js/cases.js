@@ -3,7 +3,7 @@
   const k = new URLSearchParams(location.search).get('k');
   if (!k || !window.AI || !window.COURSE) return;
   const flat = AI.flat(), idx = flat.findIndex(e => e.key === k);
-  if (idx < 0 || !AI.isDone(k) || (AI.state().mode === 'regular')) { document.documentElement.style.visibility = 'hidden'; location.replace('dashboard.html#ops'); window.CASE = null; return; }
+  if (idx < 0 || !AI.isDone(k) || (AI.state().mode === 'regular')) { try { if (idx >= 0 && !AI.isDone(k)) sessionStorage.setItem('ai_locked_case', flat[idx].l.t); } catch (e) {} document.documentElement.style.visibility = 'hidden'; location.replace('dashboard.html#ops'); window.CASE = null; return; }
   const { l: L, c: C, p: P } = flat[idx];
   const MC = (q, options, answer, why) => ({ type:'mc', q, options, answer, why });
   const MULTI = (q, options, answers, why) => ({ type:'multi', q, options, answers, why });

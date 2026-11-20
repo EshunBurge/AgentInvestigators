@@ -214,3 +214,14 @@ a.casef:hover{transform:translateY(-3px)}
 .path{margin-inline:auto}
 .chap-h,.path-head{text-align:center}
 .eyebrow,.lbl{color:var(--r300)}
+/* case-file unlock explainer */
+.unlock-note{display:flex;align-items:center;gap:16px;padding:18px 20px;margin:0 0 22px;border-radius:16px;background:linear-gradient(135deg,var(--r900),var(--r950));border:1px solid var(--r700)}
+.unlock-note .ul-ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--r800)}
+.unlock-note svg,.casef .lk svg{width:22px;height:22px;fill:none;stroke:var(--r200);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.unlock-note b{display:block;color:#f5ecea;font-size:1rem;margin-bottom:2px}
+.unlock-note p{margin:0;color:var(--r100);font-size:.92rem;line-height:1.5}
+.unlock-note .btn{margin-left:auto;flex:none}
+@media(max-width:700px){.unlock-note{flex-wrap:wrap}.unlock-note .btn{margin-left:0}}
+button.casef{font:inherit;text-align:left;cursor:pointer;width:100%}
+.casef .lk{position:absolute;top:12px;right:12px}
+.casef .lk svg{stroke:#9d8a8d;width:18px;height:18px}
