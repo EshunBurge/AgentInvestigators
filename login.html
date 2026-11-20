@@ -20,8 +20,25 @@
       <h2>Log in or<br>sign up</h2>
       <p>Your account keeps your course progress, streak, badges and agent gear in one place.</p>
     </div>
-  <img class="peek p1" src="img/agent-nyx.svg" alt="" aria-hidden="true">
-    <img class="peek p2" src="img/agent-rook.svg" alt="" aria-hidden="true">
+    <div class="auth-logo"><svg class="casefile-logo" viewBox="0 0 420 380" role="img" aria-label="Agent Investigator case file logo" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cfFront2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3121f"/><stop offset="1" stop-color="#5c0a12"/></linearGradient>
+            <linearGradient id="cfBack2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5c0a12"/><stop offset="1" stop-color="#2a0609"/></linearGradient>
+          </defs>
+          <ellipse cx="210" cy="352" rx="150" ry="12" fill="#000" opacity=".6"/>
+          <path d="M40 70h112l26 30h182v226H40z" fill="url(#cfBack2)"/>
+          <rect x="66" y="58" width="270" height="170" rx="6" fill="#d9cfc8" transform="rotate(-5 200 150)"/>
+          <g stroke="#3a2a2c" stroke-width="6" stroke-linecap="round" opacity=".7" transform="rotate(-5 200 150)"><path d="M92 92h120M92 116h190M92 140h160M92 164h190"/></g>
+          <rect x="230" y="72" width="70" height="86" rx="4" fill="#2a1a1c" transform="rotate(-5 200 150)" opacity=".85"/>
+          <path d="M40 126h360v200H40z" fill="url(#cfFront2)"/>
+          <path d="M40 126h360" stroke="#ff4d5e" stroke-width="3" opacity=".8"/>
+          <rect x="64" y="150" width="170" height="40" rx="5" fill="#120708" stroke="#ff4d5e" stroke-width="2"/>
+          <text x="149" y="179" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="26" letter-spacing="4" fill="#ffb3ba">CASE FILE</text>
+          <text x="64" y="250" font-family="Anton,Impact,sans-serif" font-size="44" letter-spacing="2" fill="#f5ecea">AGENT</text>
+          <text x="64" y="298" font-family="Anton,Impact,sans-serif" font-size="44" letter-spacing="2" fill="#ff8a95">INVESTIGATOR</text>
+          <g transform="translate(286 218) rotate(-12)"><rect width="112" height="40" rx="5" fill="none" stroke="#ff8a95" stroke-width="3"/><text x="56" y="28" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="20" letter-spacing="3" fill="#ff8a95">TOP SECRET</text></g>
+          <g transform="translate(322 34)"><circle cx="46" cy="46" r="34" fill="#120708" stroke="#d9cfc8" stroke-width="8"/><circle cx="46" cy="46" r="22" fill="#2a0609"/><path d="M34 40a15 15 0 0 1 12-10" stroke="#ff4d5e" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M71 71l28 28" stroke="#d9cfc8" stroke-width="11" stroke-linecap="round"/></g>
+        </svg></div>
   </aside>
 
   <section class="auth-panel">
@@ -117,8 +134,7 @@
 
       <!-- SUCCESS -->
       <div class="welcome" id="welcome">
-        <img src="img/agent-vale.svg" alt="">
-        <h3>Welcome, <span id="welcomeName">there</span>.</h3>
+                <h3>Welcome, <span id="welcomeName">there</span>.</h3>
         <p id="welcomeCopy"></p>
         <a class="btn btn-primary btn-block" href="dashboard.html">Go to my dashboard</a>
         <a class="btn btn-ghost btn-block" href="index.html">Back to home</a>

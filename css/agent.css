@@ -155,3 +155,13 @@ p,li{color:var(--muted)}
 .ref-hero .docviewer iframe{height:min(78vh,1000px)}
 .pdfpages{display:grid;gap:18px;padding:18px;background:#1a1012}
 .pdfpages img{display:block;width:100%;max-width:900px;margin:0 auto;height:auto;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.5);background:#fff}
+/* login: no characters, dark crimson panel with the case-file logo */
+.auth-art{background:radial-gradient(700px 500px at 70% 90%,rgba(196,26,46,.35),transparent 60%),linear-gradient(160deg,var(--r800),var(--r950))!important;color:#f5ecea!important;display:flex!important;flex-direction:column;justify-content:space-between;gap:30px}
+.auth-art *{color:inherit}
+.auth-art .eyebrow{color:var(--r200)!important}
+.auth-art h2{color:#f5ecea!important}
+.auth-art p{color:var(--r100)!important}
+.auth-art .peek{display:none!important}
+.auth-logo{max-width:340px;width:100%;align-self:center}
+.auth-logo .casefile-logo{animation:none}
+body[data-page="login"] .nav .brand{color:#f5ecea!important}
